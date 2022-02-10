@@ -11,12 +11,12 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav">
-			<li class="nav-item active"><a class="nav-link" href="<c:url value="/"/>">Home
-					<span class="sr-only">(current)</span>
+			<li class="nav-item active"><a class="nav-link"
+				href="<c:url value="/"/>">Home <span class="sr-only">(current)</span>
 			</a></li>
 			<c:forEach var="cat" items="${categories}">
-				<li class="nav-item"><a class="nav-link" href="#">${cat.name}</a>
-				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="?CateId=${cat.id}">${cat.name}</a></li>
 			</c:forEach>
 			<li class="nav-item active"><a class="nav-link textdanger"
 				href="<c:url value="/register"/>">Dang ky</a></li>
@@ -33,6 +33,16 @@
 						class="badge badge-danger" id="cartCounter">${cartCounter}</span>
 				</a></li>
 			</c:if>
+
+			<form class="form-inline" action="<c:url value='/'/>">
+
+				<input type="text" name="kw" class="form-control mr-sm-2"
+					placeholder="Nhap tu khoa">
+
+				<button class="btn btn-success" type="submit">Search</button>
+
+
+			</form>
 
 		</ul>
 	</div>

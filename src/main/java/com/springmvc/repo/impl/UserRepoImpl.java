@@ -58,4 +58,12 @@ public class UserRepoImpl implements UserRepo {
 
 	}
 
+	@Override
+	public User getUserById(int userid) {
+		// TODO Auto-generated method stub
+		Session session = ses.getObject().getCurrentSession();
+		return session.get(User.class, userid);
+
+	}
+
 }

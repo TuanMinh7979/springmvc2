@@ -53,4 +53,10 @@ public class UserServiceImpl implements UserService {
 		return this.userRepo.getUsers(username);
 	}
 
+	@Override
+	public User getUserById(int userid) {
+		// TODO Auto-generated method stub
+		return userRepo.getUserById(userid);
+	}
+
 }

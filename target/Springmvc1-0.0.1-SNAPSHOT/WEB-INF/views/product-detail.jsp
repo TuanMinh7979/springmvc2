@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<c:url value="/resource/img/ava.png" var="imglink"/>
 <h5 class="text-center">Chi tiet san pham</h5>
 <div class="row">
 
@@ -24,28 +22,23 @@
 
 </div>
 <br />
-<form>
+<form action="">
 	<div class="form-group">
-		<textarea class="form-control" id="commentId"
-			placeholder="Nhap danh gia cua ban">
+		<textarea class="form-control" placeholder="Nhap danh gia cua ban">
 </textarea>
-		<br> <input type="submit"
-			onclick="addComment(${productId}, event)" value="Gui binh luan"
-			class="btn btn-danger">
+		<input type="submit" value="Gui binh luan" class="btn btn-danger">
 	</div>
 </form>
-<div id="commentArea">
+<div class="row">
 	<c:forEach items="${comments}" var="comment">
-		<div class="row">
-			<div class="col-md-2" style="padding: 10px">
-				<img class="rounded-circle img-fluid"
-					style="width: 50px; height: 50px" alt=""
-					src="${imglink}">
-			</div>
-			<div class="col-md-10">
-				<p>${comment.noidung}</p>
-				<i>${comment.createdDate}</i>
-			</div>
+		<div class="col-md-2" style="padding: 10px">
+			<img class="rounded-circle img-fluid"
+				style="width: 50px; height: 50px" alt=""
+				src="<c:url value="/resource/img/ava.png"/>">
+		</div>
+		<div class="col-md-10">
+			<p>${comment.noidung}</p>
+			<i>${comment.createdDate}</i>
 		</div>
 	</c:forEach>
 </div>

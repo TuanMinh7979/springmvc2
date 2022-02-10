@@ -17,6 +17,11 @@
 		<put-attribute name="content"
 			value="/WEB-INF/views/index.jsp" />
 	</definition>
+	<definition name="product-detail" extends="baselayout">
+		<put-attribute name="title" value="chi tiet san pham" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/product-detail.jsp" />
+	</definition>
 	
 
 </tiles-definitions>  
