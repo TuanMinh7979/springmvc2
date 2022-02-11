@@ -12,4 +12,7 @@ public interface ProductRepo {
 	boolean addOrUpdate(Product product);
 
 	Product getProductById(int productId);
+	
+	List<Product> getHotProduct(int num);
+	List<Object[]> getMostDisscussProduct(int num); 
 }

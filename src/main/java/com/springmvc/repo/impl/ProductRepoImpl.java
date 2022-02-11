@@ -14,12 +14,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 
+import com.springmvc.pojo.Comment;
 import com.springmvc.pojo.Product;
 import com.springmvc.repo.ProductRepo;
 
 @Repository
 @Transactional
 public class ProductRepoImpl implements ProductRepo {
+
+	@Override
+	public List<Object[]> getMostDisscussProduct(int num) {
+		// TODO Auto-generated method stub
+		Session session = ses.getObject().getCurrentSession();
+		CriteriaBuilder bder = session.getCriteriaBuilder();
+		CriteriaQuery<Object[]> query = bder.createQuery(Object[].class);
+
+		Root rootP = query.from(Product.class);
+		Root rootC = query.from(Comment.class);
+		query = query.where(bder.equal(rootC.get("product"), rootP.get("id")));
+		query.multiselect(rootP.get("id"), rootP.get("name"), rootP.get("price"), rootP.get("image"),
+				bder.count(rootP.get("id")));
+
+		query = query.groupBy(rootP.get("id"));
+		query = query.orderBy(bder.desc(bder.count(rootP.get("id"))), bder.desc(rootP.get("id")));
+
+		Query q = session.createQuery(query);
+		q.setMaxResults(num);
+		return q.getResultList();
+	}
 
 	@Autowired
 	private LocalSessionFactoryBean ses;
@@ -38,7 +60,7 @@ public class ProductRepoImpl implements ProductRepo {
 			Predicate p = builder.like(root.get("name").as(String.class), String.format("%%%s%%", kw));
 			Cq = Cq.where(p);
 		}
-		Cq=Cq.orderBy(builder.desc(root.get("id")));
+		Cq = Cq.orderBy(builder.desc(root.get("id")));
 		Query q = ss.createQuery(Cq);
 
 		int max = 6;
@@ -75,6 +97,12 @@ public class ProductRepoImpl implements ProductRepo {
 		// TODO Auto-generated method stub
 		Session session = this.ses.getObject().getCurrentSession();
 		return session.get(Product.class, productId);
+	}
+
+	@Override
+	public List<Product> getHotProduct(int num) {
+
+		return null;
 	}
 
 }

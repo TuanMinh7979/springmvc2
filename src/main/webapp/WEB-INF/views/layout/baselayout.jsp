@@ -18,6 +18,8 @@
 	integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="<c:url value="/resource/css/style1.css"/>">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 </head>
 <body>

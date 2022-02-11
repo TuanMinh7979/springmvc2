@@ -9,4 +9,5 @@ public interface ProductService  {
 	boolean addOrUpdate(Product product);
 	long countProduct();
 	public Product getProductById(int productId) ;
+	List<Object[]> getMostDisscussProduct(int num); 
 }

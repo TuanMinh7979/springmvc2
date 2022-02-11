@@ -1,24 +1,24 @@
 function addComment(productId, event) {
-event.preventDefault();
-  fetch("/Springmvc1/api/add-comment", {
-    method: "post",
-    body: JSON.stringify({
-      "content": document.getElementById("commentId").value,
-      "productId": productId,
-    }),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(function (res) {
-      console.info(res);
-      return res.json();
-    })
-    .then(function (data) {
-      console.info(data);
-      let area = document.getElementById("commentArea");
-      area.innerHTML =
-      
-        `<div class="row" >
+	event.preventDefault();
+	fetch("/Springmvc1/api/add-comment", {
+		method: "post",
+		body: JSON.stringify({
+			"content": document.getElementById("commentId").value,
+			"productId": productId,
+		}),
+		headers: {
+			"Content-Type": "application/json"
+		}
+	}).then(function(res) {
+		console.info(res);
+		return res.json();
+	})
+		.then(function(data) {
+			console.info(data);
+			let area = document.getElementById("commentArea");
+			area.innerHTML =
+
+				`<div class="row" >
 			<div class="col-md-2" style="padding: 10px">
 				<img class="rounded-circle img-fluid"
 					style="width: 50px; height: 50px" alt=""
@@ -32,6 +32,31 @@ event.preventDefault();
 			</div>
 		
 		</div>` + area.innerHTML
-        
-    });
+
+		});
+
 }
+
+function addToCart(id, name, price) {
+	event.preventDefault();
+	fetch("/Springmvc1/api/cart", {
+		method: "post",
+		body: JSON.stringify({
+			"productId": id,
+			"productName": name,
+			"price": price,
+			"quanlity": 1,
+		}),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+		.then(function(res) {
+			return res.json();
+		})
+		.then(function(data) {
+			let counter = document.getElementById("cartCounter");
+			 counter.innerText = data; 
+		});
+}
+

@@ -57,4 +57,10 @@ public class ProductServiceImpl implements ProductService {
 		return repo.getProductById(productId);
 	}
 
+	@Override
+	public List<Object[]> getMostDisscussProduct(int num) {
+		// TODO Auto-generated method stub
+		return repo.getMostDisscussProduct(num);
+	}
+
 }

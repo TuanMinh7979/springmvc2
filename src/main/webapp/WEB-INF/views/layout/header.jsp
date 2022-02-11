@@ -29,10 +29,13 @@
 					href="<c:url value="/logout"/>">${pageContext.request.userPrincipal.name}
 				</a></li>
 				<li class="nav-item active"><a class="nav-link textdanger"
-					href="<c:url value="/cart"/>">Gio hang<span
-						class="badge badge-danger" id="cartCounter">${cartCounter}</span>
-				</a></li>
+					href="<c:url value="/cart"/>">Gio hang </a></li>
 			</c:if>
+			<li class="nav-item"><a href="#" class="nav-link text-info">
+					<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+					<div class="badge badge-danger" id="cartCounter">
+						${cartCounter}</div>
+			</a></li>
 
 			<form class="form-inline" action="<c:url value='/'/>">
 
