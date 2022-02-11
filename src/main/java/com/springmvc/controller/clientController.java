@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.springmvc.pojo.CartI;
 import com.springmvc.service.CategoryService;
-import com.springmvc.utils.utils;
+import com.springmvc.utils.Utils1;
 
 @Controller
 public class clientController {
@@ -25,7 +25,7 @@ public class clientController {
 	@ModelAttribute
 	public void getcartCounter(Model model, HttpSession ses) {
 
-		model.addAttribute("cartCounter", utils.countCart((Map<Integer, CartI>) ses.getAttribute("cartMap")));
+		model.addAttribute("cartCounter", Utils1.countCart((Map<Integer, CartI>) ses.getAttribute("cartMap")));
 	}
 
 }

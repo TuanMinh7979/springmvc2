@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.springmvc.pojo.CartI;
 import com.springmvc.service.CategoryService;
 import com.springmvc.service.ProductService;
-import com.springmvc.utils.utils;
+import com.springmvc.utils.Utils1;
 
 @Controller
 @ControllerAdvice
@@ -36,7 +36,7 @@ public class HomeController  {
 	@ModelAttribute
 	public void getcartCounter(Model model, HttpSession ses) {
 
-		model.addAttribute("cartCounter", utils.countCart((Map<Integer, CartI>) ses.getAttribute("cartMap")));
+		model.addAttribute("cartCounter", Utils1.countCart((Map<Integer, CartI>) ses.getAttribute("cartMap")));
 	}
 	//chi co cac trang trong HomeController moi co the co cac modelAttribute chung nay thoi
 

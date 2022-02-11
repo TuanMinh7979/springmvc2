@@ -17,6 +17,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
+	public Set<SaleOrder> getSaleOrders() {
+		return saleOrders;
+	}
+
+	public void setSaleOrders(Set<SaleOrder> saleOrders) {
+		this.saleOrders = saleOrders;
+	}
+
 	public Set<Comment> getComments() {
 		return comments;
 	}
@@ -138,6 +146,10 @@ public class User implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private Set<Comment> comments;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private Set<SaleOrder> saleOrders;
 
 
 }

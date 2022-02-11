@@ -64,42 +64,67 @@ function updateQuanlity(cnt, productId) {
 	fetch("/Springmvc1/api/cart", {
 		method: "put",
 		body: JSON.stringify({
-			"productId":  productId,
-			"productName":  "",
+			"productId": productId,
+			"productName": "",
 			"price": 0,
 			"quanlity": cnt
 
 		}),
 		headers: {
-			"Content-Type":  "application/json",
+			"Content-Type": "application/json",
 		}
 
 	}).then(function(res) {
 		return res.json()
 	}).then(function(data) {
 		let counter = document.getElementById("cartCounter");
-		counter.innerText = data;
+		counter.innerText = data.counter;
+
+		let amountCart = document.getElementById("amountCart");
+		amountCart.innerText = data.amount;
 	})
 
 }
 
 function deleteCartItem(productId) {
-	/*neu khong dung dau packtid thi ta phai cong chuoi*/
-	fetch(`/Springmvc1/api/cart/${productId}`, {
-		method: "delete",
-	})
-		.then(function(res) {
-			return res.json();
+	if (confirm("Ban chac chan xoa san pham nay?") == true) {
+		/*neu khong dung dau packtid thi ta phai cong chuoi*/
+		fetch(`/Springmvc1/api/cart/${productId}`, {
+			method: "delete",
 		})
-		.then(function(data) {
-			counter = document.getElementById("cartCounter");
-			counter.innerText = data;
-			/* location.reload()*/
-			let row = document.getElementById(`product${productId}`);
-			row.style.display =  "none"
+			.then(function(res) {
+				return res.json();
+			})
+			.then(function(data) {
 
-		});
+				/* location.reload()*/
+				let row = document.getElementById(`product${productId}`);
+				row.style.display = "none";
+
+				let counter = document.getElementById("cartCounter");
+				counter.innerText = data.counter;
+
+				let amountCart = document.getElementById("amountCart");
+				amountCart.innerText = data.amount;
+			});
+	}
 }
+
+function pay() {
+	if (confirm("Ban chac chan thanh toan")) {
+		fetch("/Springmvc1/api/pay", {
+			method: "post"
+
+		}).then(function(res) {
+			return res.json();
+		}).then(function(code) {
+			console.info(code);
+			location.reload();
+		})
+
+	}
+}
+
 
 
 

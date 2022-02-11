@@ -41,7 +41,10 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<input type="button" value="Thanh toan" class="btn btn-success">
+		<div>
+		<h5>Tong tien hoa don: <span id="amountCart">${cartStats.amount}VND</span></h5>
+		</div>
+		<input type="button" value="Thanh toan" onclick="pay()" class="btn btn-success">
 
 	</c:if>
 </body>

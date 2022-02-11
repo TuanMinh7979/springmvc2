@@ -33,6 +33,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Product implements Serializable {
 
+	public Set<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(Set<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
 	public Set<Comment> getComments() {
 		return comments;
 	}
@@ -171,6 +179,10 @@ public class Product implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy="product" ,fetch=FetchType.EAGER)
 	private Set<Comment> comments;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="product" )
+	private Set<OrderDetail> orderDetails;
 
 	@Transient
 	private MultipartFile file;
