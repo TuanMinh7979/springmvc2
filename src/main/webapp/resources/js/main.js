@@ -56,7 +56,50 @@ function addToCart(id, name, price) {
 		})
 		.then(function(data) {
 			let counter = document.getElementById("cartCounter");
-			 counter.innerText = data; 
+			counter.innerText = data;
 		});
 }
+
+function updateQuanlity(cnt, productId) {
+	fetch("/Springmvc1/api/cart", {
+		method: "put",
+		body: JSON.stringify({
+			"productId":  productId,
+			"productName":  "",
+			"price": 0,
+			"quanlity": cnt
+
+		}),
+		headers: {
+			"Content-Type":  "application/json",
+		}
+
+	}).then(function(res) {
+		return res.json()
+	}).then(function(data) {
+		let counter = document.getElementById("cartCounter");
+		counter.innerText = data;
+	})
+
+}
+
+function deleteCartItem(productId) {
+	/*neu khong dung dau packtid thi ta phai cong chuoi*/
+	fetch(`/Springmvc1/api/cart/${productId}`, {
+		method: "delete",
+	})
+		.then(function(res) {
+			return res.json();
+		})
+		.then(function(data) {
+			counter = document.getElementById("cartCounter");
+			counter.innerText = data;
+			/* location.reload()*/
+			let row = document.getElementById(`product${productId}`);
+			row.style.display =  "none"
+
+		});
+}
+
+
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,13 +18,16 @@ import com.springmvc.service.ProductService;
 import com.springmvc.utils.utils;
 
 @Controller
-public class HomeController {
+@ControllerAdvice
+public class HomeController  {
 	@Autowired
 	private CategoryService categoryService;
 
 	@Autowired
 	private ProductService productService;
-
+	//chi co cac trang trong HomeController moi co the co cac modelAttribute chung nay thoi
+	//=>TA DUNG CONTROLLER ADVICE THI TAT CA CAC PAGE KO PHAI CUA CONTROLLER NAY CUNG CO THE CO CAC 
+	//ATTRIBUTE BEN DUOI
 	@ModelAttribute
 	public void commonAtr(Model model) {
 		model.addAttribute("categories", this.categoryService.getCategories());
@@ -34,6 +38,7 @@ public class HomeController {
 
 		model.addAttribute("cartCounter", utils.countCart((Map<Integer, CartI>) ses.getAttribute("cartMap")));
 	}
+	//chi co cac trang trong HomeController moi co the co cac modelAttribute chung nay thoi
 
 	@GetMapping("/")
 	public String index(Model model, @RequestParam Map<String, String> params) {

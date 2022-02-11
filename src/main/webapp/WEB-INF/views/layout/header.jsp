@@ -16,7 +16,7 @@
 			</a></li>
 			<c:forEach var="cat" items="${categories}">
 				<li class="nav-item"><a class="nav-link"
-					href="?CateId=${cat.id}">${cat.name}</a></li>
+					href="<c:url value='/?CateId=${cat.id}'/>"> ${cat.name}</a></li>
 			</c:forEach>
 			<li class="nav-item active"><a class="nav-link textdanger"
 				href="<c:url value="/register"/>">Dang ky</a></li>
@@ -28,11 +28,11 @@
 				<li class="nav-item active"><a class="nav-link textdanger"
 					href="<c:url value="/logout"/>">${pageContext.request.userPrincipal.name}
 				</a></li>
-				<li class="nav-item active"><a class="nav-link textdanger"
-					href="<c:url value="/cart"/>">Gio hang </a></li>
+
 			</c:if>
-			<li class="nav-item"><a href="#" class="nav-link text-info">
-					<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+			<li class="nav-item"><a href="<c:url value='/cart'/>"
+				class="nav-link text-info"> <i class="fa fa-shopping-cart"
+					aria-hidden="true"></i>
 					<div class="badge badge-danger" id="cartCounter">
 						${cartCounter}</div>
 			</a></li>
