@@ -23,11 +23,13 @@
 
 </head>
 <body>
+<tiles:insertAttribute name="header" />
 	<div class="container">
-		<tiles:insertAttribute name="header" />
+		
 		<tiles:insertAttribute name="content" />
-		<tiles:insertAttribute name="footer" />
+		
 	</div>
+	<tiles:insertAttribute name="footer" />
 	<script src ="<c:url value="/resource/js/main.js"/>" type="text/javascript">
 	
 	</script>

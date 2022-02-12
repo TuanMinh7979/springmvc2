@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:url value="/resource/img/ava.png" var="imglink" />
+
 <h5 class="text-center">Chi tiet san pham</h5>
 <div class="row">
 
@@ -39,7 +39,7 @@
 		<div class="row">
 			<div class="col-md-2" style="padding: 10px">
 				<img class="rounded-circle img-fluid"
-					style="width: 50px; height: 50px" alt="" src="${imglink}">
+					style="width: 50px; height: 50px" alt="" src="<c:url value='/resource/img/${comment.user.avatar}'/>">
 			</div>
 			<div class="col-md-10">
 				<p>${comment.noidung}</p>

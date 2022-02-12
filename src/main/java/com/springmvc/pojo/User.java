@@ -12,11 +12,29 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	public Set<SaleOrder> getSaleOrders() {
 		return saleOrders;
 	}
@@ -135,7 +153,9 @@ public class User implements Serializable {
 	private String email;
 	private String phone;
 	private String username;
+	@JsonIgnore
 	private String password;
+	@JsonIgnore
 	@Transient
 	private String confirmPassword;
 	private String active;
@@ -150,6 +170,12 @@ public class User implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private Set<SaleOrder> saleOrders;
+	
+	
+	private String avatar;
+	
+	@Transient
+	private MultipartFile file;
 
 
 }

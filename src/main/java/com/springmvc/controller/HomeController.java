@@ -20,18 +20,22 @@ import com.springmvc.utils.Utils1;
 
 @Controller
 @ControllerAdvice
-public class HomeController  {
+public class HomeController {
 	@Autowired
 	private CategoryService categoryService;
 
 	@Autowired
 	private ProductService productService;
-	//chi co cac trang trong HomeController moi co the co cac modelAttribute chung nay thoi
-	//=>TA DUNG CONTROLLER ADVICE THI TAT CA CAC PAGE KO PHAI CUA CONTROLLER NAY CUNG CO THE CO CAC 
-	//ATTRIBUTE BEN DUOI
+
+	// chi co cac trang trong HomeController moi co the co cac modelAttribute chung
+	// nay thoi
+	// =>TA DUNG CONTROLLER ADVICE THI TAT CA CAC PAGE KO PHAI CUA CONTROLLER NAY
+	// CUNG CO THE CO CAC
+	// ATTRIBUTE BEN DUOI
 	@ModelAttribute
-	public void commonAtr(Model model) {
+	public void commonAtr(Model model, HttpSession ses) {
 		model.addAttribute("categories", this.categoryService.getCategories());
+		model.addAttribute("currentUser", ses.getAttribute("currentUser"));
 	}
 
 	@ModelAttribute
@@ -39,7 +43,8 @@ public class HomeController  {
 
 		model.addAttribute("cartCounter", Utils1.countCart((Map<Integer, CartI>) ses.getAttribute("cartMap")));
 	}
-	//chi co cac trang trong HomeController moi co the co cac modelAttribute chung nay thoi
+	// chi co cac trang trong HomeController moi co the co cac modelAttribute chung
+	// nay thoi
 
 	@GetMapping("/")
 	public String index(Model model, @RequestParam Map<String, String> params, HttpSession ses) {
@@ -56,8 +61,6 @@ public class HomeController  {
 		}
 		model.addAttribute("discussProducts", this.productService.getMostDisscussProduct(3));
 		model.addAttribute("productCounter", this.productService.countProduct());
-		
-		model.addAttribute("currentUser", ses.getAttribute("currentUser"));
 
 		return "index";
 	}

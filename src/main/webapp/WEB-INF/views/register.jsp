@@ -8,7 +8,7 @@
 <c:if test="${errMsg != null}">
 	<div class="alert alert-danger">${errMsg}</div>
 </c:if>
-<form:form action="${action}" method="post" modelAttribute="user">
+<form:form action="${action}" method="post" modelAttribute="user" enctype= "multipart/form-data">
 	<div class="form-group">
 		<label>Username</label>
 		<form:input type="text" id="username" path="username"
@@ -43,6 +43,12 @@
 			cssClass="form-control" />
 	</div>
 	<div class="form-group">
+		<label>Avatar</label>
+		<form:input type="file" id="file" path="file"
+			cssClass="form-control" />
+	</div>
+	<div class="form-group">
+	
 		<input type="submit" value="LOGIN" />
 	</div>
 

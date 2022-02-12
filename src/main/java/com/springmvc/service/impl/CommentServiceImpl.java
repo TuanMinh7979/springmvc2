@@ -25,15 +25,15 @@ public class CommentServiceImpl implements CommentService {
 	private CommentRepo commentRepo;
 
 	@Override
-	public Comment addComment(String content, int productId) {
+	public Comment addComment(String content, int productId, User creator) {
 		// TODO Auto-generated method stub
 		Product p = productRepo.getProductById(productId);
-		User u = userRepo.getUserById(1);
+	
 
 		Comment c = new Comment();
 		c.setNoidung(content);
 		c.setProduct(p);
-		c.setUser(u);
+		c.setUser(creator);
 		c.setCreatedDate(new Date());
 		c = commentRepo.addComment(c);
 		return c;

@@ -1,5 +1,7 @@
 package com.springmvc.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springmvc.pojo.User;
 import com.springmvc.repo.UserRepo;
@@ -43,6 +46,19 @@ public class UserServiceImpl implements UserService {
 		String password = user.getPassword();
 		user.setPassword(this.passwordEncoder.encode(password));
 		user.setUserRole(User.USER);
+		MultipartFile img = user.getFile();
+		String rootdir = "C:\\Users\\ASUS\\eclipse-workspace\\Springmvc2\\src\\main\\webapp\\resources\\img\\";
+		String linktoimg = rootdir + user.getFile().getOriginalFilename();
+
+		try {
+			img.transferTo(new File(linktoimg));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		user.setAvatar(user.getFile().getOriginalFilename());
 
 		return this.userRepo.addUser(user);
 	}

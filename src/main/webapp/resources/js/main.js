@@ -16,13 +16,14 @@ function addComment(productId, event) {
 		.then(function(data) {
 			console.info(data);
 			let area = document.getElementById("commentArea");
+			let linkimg=
 			area.innerHTML =
 
 				`<div class="row" >
 			<div class="col-md-2" style="padding: 10px">
 				<img class="rounded-circle img-fluid"
 					style="width: 50px; height: 50px" alt=""
-					src="/Springmvc1/resource/img/ava.png">
+					src="/Springmvc1/resource/img/"+${data.user.avatar}>
 					<!--<c:url value='/resource/img/ava.png'/> de link nay thi js se khong hieu dc tai vi no khong load lai trang
 					do do ta can hardcode source cua link trong javascript-->
 			</div>

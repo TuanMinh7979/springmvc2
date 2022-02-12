@@ -27,10 +27,18 @@
 			<c:if test="${pageContext.request.userPrincipal.name!=null }">
 				<li class="nav-item active"><a class="nav-link textdanger"
 					href="<c:url value="/logout"/>">${pageContext.request.userPrincipal.name}
-				</a></li>
+					 <c:if test="${currentUser.avatar != null}">
+						<img alt="" style="width:30px; height:30px; border-radius:50%"
+							src="<c:url value="/resource/img/${currentUser.avatar}"/>" class="img-fluid">
+					</c:if> <c:if test="${currentUser.avatar == null}">
+					abc
+						<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+					</c:if></li>
+				</a>
 
 			</c:if>
-			<li class="nav-item"><a href="<c:url value='/cart'/>"
+			<li class="nav-item"><a
+				href="<c:url value='/cart'/>"
 				class="nav-link text-info"> <i class="fa fa-shopping-cart"
 					aria-hidden="true"></i>
 					<div class="badge badge-danger" id="cartCounter">
