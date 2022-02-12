@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,7 @@ public class HomeController  {
 	//chi co cac trang trong HomeController moi co the co cac modelAttribute chung nay thoi
 
 	@GetMapping("/")
-	public String index(Model model, @RequestParam Map<String, String> params) {
+	public String index(Model model, @RequestParam Map<String, String> params, HttpSession ses) {
 
 		String kw = params.getOrDefault("kw", null);
 		int page = Integer.parseInt(params.getOrDefault("page", "1"));
@@ -55,6 +56,8 @@ public class HomeController  {
 		}
 		model.addAttribute("discussProducts", this.productService.getMostDisscussProduct(3));
 		model.addAttribute("productCounter", this.productService.countProduct());
+		
+		model.addAttribute("currentUser", ses.getAttribute("currentUser"));
 
 		return "index";
 	}

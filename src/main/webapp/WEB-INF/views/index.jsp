@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="${currentUser != null}">
+${currentUser.email} - ${currentUser.firstName}
+</c:if>
 <ul class="pagination">
 	<c:forEach begin="1" end="${Math.ceil(productCounter/6)}" var="page">
 
@@ -24,9 +27,10 @@
 				<div class="card-img-overlay">
 					<h4 class="card-title">${p.name}</h4>
 					<p class="card-text">${p.price}</p>
-					<a href="#" class="btn btn-primary" onclick="addToCart(${p.id}, '${p.name}',${p.price})">Them vao gio</a> <a
-						class="btn btn-warning" href="<c:url value='products/${p.id}'/>">Chi
-						Tiet</a>
+					<a href="#" class="btn btn-primary"
+						onclick="addToCart(${p.id}, '${p.name}',${p.price})">Them vao
+						gio</a> <a class="btn btn-warning"
+						href="<c:url value='products/${p.id}'/>">Chi Tiet</a>
 				</div>
 			</div>
 
